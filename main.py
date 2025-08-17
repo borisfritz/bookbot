@@ -13,13 +13,18 @@ def get_book_txt(file_path):
 # Take in data and print the data in a readable format
 
 def print_data(file_path, word_count, letter_list):
-    print("============ BOOKBOT ============")
-    print(f"Analyzing book found at {file_path}...")
-    print("----------- Word Count ----------")
-    print(f"Found {word_count} total words")
-    print("--------- Character Count -------")
-    for letter in letter_list:
-        print(f"{letter["char"]}: {letter["num"]}")
+    if (type(file_path) is str) and (type(word_count) is int) and (type(letter_list) is list):
+        print("============ BOOKBOT ============")
+        print(f"Analyzing book found at {file_path}...")
+        print("----------- Word Count ----------")
+        print(f"Found {word_count} total words")
+        print("--------- Character Count -------")
+        for letter in letter_list:
+            print(f"{letter["char"]}: {letter["num"]}")
+        print("============= END ===============")
+    else:
+        print("Print Error")
+        return None
 
 
 # MAIN PROGRAM
@@ -30,7 +35,6 @@ def main():
     from stats import count_letters
     from stats import sort_letters_by_count
 
-    # Import Book from file and store as a STRING
     book_file_path =  "books/frankenstein.txt"
     book_text = get_book_txt(book_file_path)
     book_word_count = count_words(book_text)
