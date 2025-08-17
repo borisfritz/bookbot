@@ -27,3 +27,19 @@ def count_letters(text):
         print("count_letters() incorrect type")
         return None
 
+# Take in dictonary of letter -> cout and sort list hightest count first.list
+    # if argument dict IS NOT a dictonary, return None and print error
+
+def sort_letters_by_count(letter_dictonary):
+    if type(letter_dictonary) is dict:
+        letter_list = []
+        for letter in letter_dictonary:
+            count = letter_dictonary[letter]
+            key_value = { "char": letter, "num": count}
+            letter_list.append(key_value)
+        letter_list.sort(reverse=True, key=lambda items: items["num"])
+        return letter_list
+
+    else:
+        print("sort_letters_by_count() incorrect type")
+        return None

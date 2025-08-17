@@ -10,23 +10,34 @@ def get_book_txt(file_path):
         print("incorrect file path!")
         return None
 
+# Take in data and print the data in a readable format
+
+def print_data(file_path, word_count, letter_list):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {file_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+    for letter in letter_list:
+        print(f"{letter["char"]}: {letter["num"]}")
+
+
 # MAIN PROGRAM
 
 def main():
 
     from stats import count_words
     from stats import count_letters
+    from stats import sort_letters_by_count
 
     # Import Book from file and store as a STRING
     book_file_path =  "books/frankenstein.txt"
     book_text = get_book_txt(book_file_path)
-
-    # Find and print the book's word count
     book_word_count = count_words(book_text)
-    print(f"{book_word_count} words found in the document")
-
-    # print 'letter: count' for each letter
     book_letter_count = count_letters(book_text)
-    print(book_letter_count)
+    book_letters_sorted = sort_letters_by_count(book_letter_count)
 
+    print_data(book_file_path, book_word_count, book_letters_sorted)
+
+# Run Main Program
 main()
