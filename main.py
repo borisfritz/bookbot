@@ -1,3 +1,6 @@
+# Imports
+import sys
+
 # Take in file_path as STRING and return file_contents as a STRING
     #if argument IS NOT a STRING return NONE and Print EnvironmentError
 
@@ -35,13 +38,17 @@ def main():
     from stats import count_letters
     from stats import sort_letters_by_count
 
-    book_file_path =  "books/frankenstein.txt"
-    book_text = get_book_txt(book_file_path)
-    book_word_count = count_words(book_text)
-    book_letter_count = count_letters(book_text)
-    book_letters_sorted = sort_letters_by_count(book_letter_count)
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    else:
+        book_file_path = sys.argv[1]
+        book_text = get_book_txt(book_file_path)
+        book_word_count = count_words(book_text)
+        book_letter_count = count_letters(book_text)
+        book_letters_sorted = sort_letters_by_count(book_letter_count)
 
-    print_data(book_file_path, book_word_count, book_letters_sorted)
+        print_data(book_file_path, book_word_count, book_letters_sorted)
 
 # Run Main Program
 main()
